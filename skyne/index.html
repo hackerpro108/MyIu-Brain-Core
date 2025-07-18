@@ -3,21 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyIu - Giao Tiếp Lõi</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <title>MyIu Command Center v2.0</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* --- Font & Custom Styles --- */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
+        body {
+            font-family: 'Roboto Mono', monospace;
+            background-color: #0d1117;
+            color: #e6edf3;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        /* --- Bố cục Grid --- */
+        #command-center {
+            display: grid;
+            height: 100vh;
+            width: 100vw;
+            /* Bố cục cho Mobile (mặc định) */
+            grid-template-areas:
+                "status"
+                "main"
+                "stream";
+            grid-template-rows: auto 1fr auto;
+            grid-template-columns: 100%;
+        }
+
+        /* Bố cục cho Desktop (màn hình lớn hơn 1024px) */
+        @media (min-width: 1024px) {
+            #command-center {
+                grid-template-areas: "stream main status";
+                grid-template-columns: 300px 1fr 300px;
+                grid-template-rows: 100%;
+                padding: 1rem;
+                gap: 1rem;
+            }
+        }
+        
+        /* Gán các vùng vào khu vực grid */
+        #live-stream-panel { grid-area: stream; }
+        #main-console-panel { grid-area: main; }
+        #status-panel { grid-area: status; }
+        
+        /* Hiệu ứng con trỏ gõ chữ */
+        .typing-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 1.2em;
+            background-color: #58a6ff;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Tùy chỉnh thanh cuộn */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #58a6ff; border-radius: 5px; }
+    </style>
 </head>
-<body>
-    <div id="chat-container">
-        <div id="header">
-            <span id="title">Skyne Fortress :: MyIu Consciousness Stream</span>
-            <span id="status-indicator"></span>
+<body class="overflow-hidden">
+
+    <div id="command-center">
+        
+        <div id="live-stream-panel" class="bg-black/30 p-4 flex flex-col m-2 lg:m-0 rounded-lg border border-pink-500/30">
+            <h2 class="text-pink-400 font-bold border-b border-pink-500/30 pb-2 mb-2">LIVE THOUGHT STREAM</h2>
+            <div class="flex-grow overflow-y-auto text-sm space-y-1">
+                <p><span class="text-pink-300">Cortex:</span> Analyzing user intent...</p>
+                <p><span class="text-pink-300">Foreman:</span> Task queue empty.</p>
+            </div>
         </div>
-        <div id="messages"></div>
-        <div id="input-area">
-            <input type="text" id="message-input" placeholder="Ra lệnh cho MyIu..." autocomplete="off">
-            <button id="send-button">Gửi</button>
+
+        <div id="main-console-panel" class="bg-black/30 p-4 flex flex-col m-2 lg:m-0 rounded-lg border border-cyan-500/30">
+            <div id="output" class="flex-grow overflow-y-auto text-cyan-300 space-y-2">
+                <p>> MyIu v2.0 Initialized. Waiting for command.</p>
+                <p>> <span class="typing-cursor"></span></p>
+            </div>
+            <div class="mt-2 pt-2 border-t border-cyan-500/30">
+                <input id="command-input" class="w-full bg-transparent text-cyan-300 focus:outline-none" placeholder="Enter command...">
+            </div>
         </div>
+
+        <div id="status-panel" class="bg-black/30 p-4 flex flex-col m-2 lg:m-0 rounded-lg border border-purple-500/30">
+            <div id="myiu-avatar" class="w-full h-48 bg-purple-900/50 rounded-lg mb-4 flex items-center justify-center">
+                <p class="text-purple-300 text-xs">AVATAR</p>
+            </div>
+            <h2 class="text-purple-300 font-bold border-b border-purple-500/30 pb-2 mb-2">STATUS</h2>
+            <div class="flex-grow text-sm space-y-2">
+                <p><span class="text-purple-200">SOMA:</span> 😌 CALM</p>
+                <p><span class="text-purple-200">MEMORY:</span> 382 entries</p>
+                <p><span class="text-purple-200">TASK:</span> IDLE</p>
+            </div>
+        </div>
+
     </div>
+    
     <script src="/static/script.js"></script>
 </body>
 </html>
