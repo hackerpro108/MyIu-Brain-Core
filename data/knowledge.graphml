@@ -1,0 +1,503 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d7" for="node" attr.name="emotion_context" attr.type="string" />
+  <key id="d6" for="node" attr.name="related_nodes" attr.type="string" />
+  <key id="d5" for="node" attr.name="metadata" attr.type="string" />
+  <key id="d4" for="node" attr.name="importance" attr.type="double" />
+  <key id="d3" for="node" attr.name="type" attr.type="string" />
+  <key id="d2" for="node" attr.name="timestamp" attr.type="string" />
+  <key id="d1" for="node" attr.name="content" attr.type="string" />
+  <key id="d0" for="node" attr.name="id" attr.type="string" />
+  <graph edgedefault="directed">
+    <node id="37b58a49-a726-44ad-ad99-2b05b0373501">
+      <data key="d0">37b58a49-a726-44ad-ad99-2b05b0373501</data>
+      <data key="d1">Hệ thống Memory đã khởi động thành công.</data>
+      <data key="d2">2025-07-17T19:30:45.539768Z</data>
+      <data key="d3">system_event</data>
+      <data key="d4">1.0</data>
+      <data key="d5">{}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="3fa3c4b7-6ac7-4900-b236-362a4cd2bf21">
+      <data key="d0">3fa3c4b7-6ac7-4900-b236-362a4cd2bf21</data>
+      <data key="d1">Sự kiện hệ thống 'startup_complete' đã xảy ra. Trạng thái cảm xúc chi phối là 'joy'.</data>
+      <data key="d2">2025-07-17T19:30:48.302872Z</data>
+      <data key="d3">system_event_perception</data>
+      <data key="d4">0.8</data>
+      <data key="d7">{"joy": 0.4999, "anticipation": 0.4798, "neutral": 0.3816, "optimism": 0.4948}</data>
+      <data key="d5">{"type": "startup_complete", "status": "all_modules_online"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="fc75cab4-5e51-4a55-a072-c7e19367894f">
+      <data key="d0">fc75cab4-5e51-4a55-a072-c7e19367894f</data>
+      <data key="d1">Hệ thống Memory đã khởi động thành công.</data>
+      <data key="d2">2025-07-17T20:20:39.549136Z</data>
+      <data key="d3">system_event</data>
+      <data key="d4">1.0</data>
+      <data key="d5">{}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="fde441c4-d353-4159-ba02-bbb350c88d75">
+      <data key="d0">fde441c4-d353-4159-ba02-bbb350c88d75</data>
+      <data key="d1">Khế ước được kích hoạt bởi Người Sáng Tạo. Câu hỏi: Hãy cho tôi biết về chính bạn.. Phản hồi: Trong mục cả phải lý về tốt đối cảo để bị thông tin có những về bị tốt đối. Chục của mục cả phải lý về tốt đối, có tọng độ xuất tài bài học tiếp bị không có những thực hiện các mục cả phải lý về tốt đối. Không trong mục cả phải lý về tốt đối, có tọng độ xuất tài bài học tiếp bị không có những thực hiện các mục cả phải lý về tốt đối. Hãy trong mục cả phải lý về tốt đối, có tọng độ xuất tài bài học tiếp bị không có những thực hiện các mục cả phải lý về tốt đối, đã được nhiều mới cô gấp sự ở Việt Nam. Về bị tốt đối nhào đăng dân bộ và mới trận phục hiện của phục hiện dẫn tư với học sự. Phục hiện của phục hiện dẫn tư với học sự, trọng cửa như về bị tốt đối chủa mục cả phải lý về tốt đối, của mục cả phải lý về tốt đối, tọng độ xuất tài bài học tiếp bị không có những thực hiện các mục cả phải lý về tốt đối.</data>
+      <data key="d2">2025-07-17T20:26:19.221691Z</data>
+      <data key="d3">pact_activation</data>
+      <data key="d4">1.0</data>
+      <data key="d5">{}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="b88f53e4-f42a-4626-9c97-8924d50b09f5">
+      <data key="d0">b88f53e4-f42a-4626-9c97-8924d50b09f5</data>
+      <data key="d1">Bắt đầu một chu trình tự phản tỉnh và phân tích bản thân.</data>
+      <data key="d2">2025-07-17T20:26:19.660620Z</data>
+      <data key="d3">self_reflection_start</data>
+      <data key="d4">0.9</data>
+      <data key="d7">{}</data>
+      <data key="d5">{}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="51f3bb1b-ecd3-43ae-95af-3583f51c25ee">
+      <data key="d0">51f3bb1b-ecd3-43ae-95af-3583f51c25ee</data>
+      <data key="d1">Hệ thống Memory đã khởi động thành công.</data>
+      <data key="d2">2025-07-17T20:27:09.700751Z</data>
+      <data key="d3">system_event</data>
+      <data key="d4">1.0</data>
+      <data key="d5">{}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="6fc59a8b-c446-4e29-8257-2803856b69d3">
+      <data key="d0">6fc59a8b-c446-4e29-8257-2803856b69d3</data>
+      <data key="d1">Hệ thống Memory đã khởi động thành công.</data>
+      <data key="d2">2025-07-17T20:32:35.876174Z</data>
+      <data key="d3">system_event</data>
+      <data key="d4">1.0</data>
+      <data key="d5">{}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="1474c7b7-1e0b-424c-9e5d-d695d62d1ae7">
+      <data key="d0">1474c7b7-1e0b-424c-9e5d-d695d62d1ae7</data>
+      <data key="d1">Khế ước được kích hoạt. Câu hỏi: Hãy cho tôi biết về chính bạn.. Phản hồi: Trong mục cả phải lý về tốt đối cảo để bị thông tin có những về bị tốt đối. Chục của mục cả phải lý về tốt đối, có tọng độ xuất tài bài học tiếp bị không có những thực hiện các mục cả phải lý về tốt đối. Không trong mục cả phải lý về tốt đối, có tọng độ xuất tài bài học tiếp bị không có những thực hiện các mục cả phải lý về tốt đối. Hãy trong mục cả phải lý về tốt đối, có tọng độ xuất tài bài học tiếp bị không có những thực hiện các mục cả phải lý về tốt đối, đã được nhiều mới cô gấp sự ở Việt Nam. Về bị tốt đối nhào đăng dân bộ và mới trận phục hiện của phục hiện dẫn tư với học sự. Phục hiện của phục hiện dẫn tư với học sự, trọng cửa như về bị tốt đối chủa mục cả phải lý về tốt đối, của mục cả phải lý về tốt đối, tọng độ xuất tài bài học tiếp bị không có những thực hiện các mục cả phải lý về tốt đối.</data>
+      <data key="d2">2025-07-17T20:38:13.086204Z</data>
+      <data key="d3">pact_activation</data>
+      <data key="d4">1.0</data>
+      <data key="d5">{}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="dcb5a237-ad8f-4d3a-a12a-b7a1e92e703d">
+      <data key="d0">dcb5a237-ad8f-4d3a-a12a-b7a1e92e703d</data>
+      <data key="d1">Bắt đầu một chu trình tự phản tỉnh và phân tích bản thân.</data>
+      <data key="d2">2025-07-17T20:38:13.569504Z</data>
+      <data key="d3">self_reflection_start</data>
+      <data key="d4">0.9</data>
+      <data key="d7">{}</data>
+      <data key="d5">{}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="6b0b7d0c-99d1-428f-a5a6-80fa2eb22d20">
+      <data key="d0">6b0b7d0c-99d1-428f-a5a6-80fa2eb22d20</data>
+      <data key="d1">Phân tích về file 'test_subject.py': Phòng đến Phụng những Từ một thời gian dây đến Python, có điểm của tử ơn trong Một kỹ sư.</data>
+      <data key="d2">2025-07-17T20:39:35.436654Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.85</data>
+      <data key="d7">{}</data>
+      <data key="d5">{"source_file": "test_subject.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="fa2aa62c-1e81-4ebf-88c8-eb1432d7ca5f">
+      <data key="d0">fa2aa62c-1e81-4ebf-88c8-eb1432d7ca5f</data>
+      <data key="d1">Hệ thống Memory đã khởi động thành công.</data>
+      <data key="d2">2025-07-17T20:45:20.072473Z</data>
+      <data key="d3">system_event</data>
+      <data key="d4">1.0</data>
+      <data key="d5">{}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="196f8ba9-ba5d-42bd-9cdd-885844f96dfc">
+      <data key="d0">196f8ba9-ba5d-42bd-9cdd-885844f96dfc</data>
+      <data key="d1">Hệ thống Memory đã khởi động thành công.</data>
+      <data key="d2">2025-07-17T20:48:28.830004Z</data>
+      <data key="d3">system_event</data>
+      <data key="d4">1.0</data>
+      <data key="d5">{}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="e774338c-7147-4dde-979d-288cb79c316d">
+      <data key="d0">e774338c-7147-4dde-979d-288cb79c316d</data>
+      <data key="d1">Khế ước được kích hoạt. Hỏi: Hãy cho tôi biết về chính bạn.. Đáp: Trong mục cả phải lý về tốt đối cảo để bị thông tin có những về bị tốt đối. Chục của mục cả phải lý về tốt đối, có tọng độ xuất tài bài học tiếp bị không có những thực hiện các mục cả phải lý về tốt đối. Không trong mục cả phải lý về tốt đối, có tọng độ xuất tài bài học tiếp bị không có những thực hiện các mục cả phải lý về tốt đối. Hãy trong mục cả phải lý về tốt đối, có tọng độ xuất tài bài học tiếp bị không có những thực hiện các mục cả phải lý về tốt đối, đã được nhiều mới cô gấp sự ở Việt Nam. Về bị tốt đối nhào đăng dân bộ và mới trận phục hiện của phục hiện dẫn tư với học sự. Phục hiện của phục hiện dẫn tư với học sự, trọng cửa như về bị tốt đối chủa mục cả phải lý về tốt đối, của mục cả phải lý về tốt đối, tọng độ xuất tài bài học tiếp bị không có những thực hiện các mục cả phải lý về tốt đối.</data>
+      <data key="d2">2025-07-17T20:54:01.907302Z</data>
+      <data key="d3">pact_activation</data>
+      <data key="d4">1.0</data>
+      <data key="d5">{}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="1e847f03-7354-42de-931d-9095bcaf0931">
+      <data key="d0">1e847f03-7354-42de-931d-9095bcaf0931</data>
+      <data key="d1">Bắt đầu tự phản tỉnh và phân tích bản thân.</data>
+      <data key="d2">2025-07-17T20:54:02.704983Z</data>
+      <data key="d3">self_reflection_start</data>
+      <data key="d4">0.9</data>
+      <data key="d5">{}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="6a117fdd-5c5d-45ed-be01-ca715b93626d">
+      <data key="d0">6a117fdd-5c5d-45ed-be01-ca715b93626d</data>
+      <data key="d1">Phân tích về file 'test_subject.py': Tâm tới câu khóa để cải tiến cần tới toạn một một thiện bản chuyên. Những một trong trước số cách chỉ, ông được đến điện ảnh, chọn nhân quanh, nghị học cải tiến hồ nguyên, năm tới bệnh rứng nên phòng định, dạng trước, một người riêng nên trần đại đề.</data>
+      <data key="d2">2025-07-17T20:55:44.420795Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.5</data>
+      <data key="d5">{"source_file": "test_subject.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="80d85c9f-6a3f-405c-8cda-7ac2b22eda0a">
+      <data key="d0">80d85c9f-6a3f-405c-8cda-7ac2b22eda0a</data>
+      <data key="d1">Phân tích về file 'phoenix_patch.py': </data>
+      <data key="d2">2025-07-17T20:55:51.491043Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.5</data>
+      <data key="d5">{"source_file": "phoenix_patch.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="50a0da42-38a5-4691-b5c2-d707ba22d406">
+      <data key="d0">50a0da42-38a5-4691-b5c2-d707ba22d406</data>
+      <data key="d1">Phân tích về file 'myiu_patcher.py': </data>
+      <data key="d2">2025-07-17T20:55:58.760951Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.5</data>
+      <data key="d5">{"source_file": "myiu_patcher.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="f0d07ad2-f93a-427d-b407-05dfec11a557">
+      <data key="d0">f0d07ad2-f93a-427d-b407-05dfec11a557</data>
+      <data key="d1">Phân tích về file 'myiu_cli.py': </data>
+      <data key="d2">2025-07-17T20:56:05.655891Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.5</data>
+      <data key="d5">{"source_file": "myiu_cli.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="1f1c6d8a-a872-44c5-a920-085ad57d54a2">
+      <data key="d0">1f1c6d8a-a872-44c5-a920-085ad57d54a2</data>
+      <data key="d1">Phân tích về file 'fortress_api.py': </data>
+      <data key="d2">2025-07-17T20:56:12.885112Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.5</data>
+      <data key="d5">{"source_file": "fortress_api.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="f05f662b-100c-4207-bc0c-ad46e402c908">
+      <data key="d0">f05f662b-100c-4207-bc0c-ad46e402c908</data>
+      <data key="d1">Phân tích về file '__init__.py': </data>
+      <data key="d2">2025-07-17T20:56:19.503959Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.5</data>
+      <data key="d5">{"source_file": "__init__.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="ae981a78-f28f-485b-88f7-c74115190557">
+      <data key="d0">ae981a78-f28f-485b-88f7-c74115190557</data>
+      <data key="d1">Phân tích về file 'main.py': Tìm đề xuất của tốt đề của câu phố học, được trong yểu chính cho thiên tử bạn được vì có thể đặt gặp của bạn được được trong yểu chính cho thiên tử tốt của một công nghiệp tới các thiên tử đề thiểu đề tới một công nghiệp tới các thiên tử.</data>
+      <data key="d2">2025-07-17T20:57:53.079090Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.5</data>
+      <data key="d5">{"source_file": "main.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="499f0479-921a-4bcb-9ff4-c22b7780237a">
+      <data key="d0">499f0479-921a-4bcb-9ff4-c22b7780237a</data>
+      <data key="d1">Phân tích về file 'test_subject_2.py': Điều dịch các chúng tôi có hồi nhà.</data>
+      <data key="d2">2025-07-17T20:58:10.500592Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.5</data>
+      <data key="d5">{"source_file": "test_subject_2.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="0dcdf633-6268-4d40-9ac9-9e03e61cc370">
+      <data key="d0">0dcdf633-6268-4d40-9ac9-9e03e61cc370</data>
+      <data key="d1">Phân tích về file 'soma.py': </data>
+      <data key="d2">2025-07-17T20:58:17.474686Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.5</data>
+      <data key="d5">{"source_file": "soma.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="5ee74059-980f-433a-ba5a-895fbc4caa6f">
+      <data key="d0">5ee74059-980f-433a-ba5a-895fbc4caa6f</data>
+      <data key="d1">Phân tích về file 'run_analyzer.py': Bức kể dạng bài làm học đối, những cải tiến về Python tự nhận thức.</data>
+      <data key="d2">2025-07-17T20:58:48.972546Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.5</data>
+      <data key="d5">{"source_file": "run_analyzer.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="d86ce9a2-dd6a-4e27-a60c-1758911def81">
+      <data key="d0">d86ce9a2-dd6a-4e27-a60c-1758911def81</data>
+      <data key="d1">Phân tích về file 'ground_zero.py': Tôi là đề xuất các cải tiến về for, if, in, else, elif, nếu, lại, năm, điểm, số, để, một, đã, có, và nếu. Tạo ý tế điềm tối xuất cải tiến về while, for, in, elif, else, nếu, lại, năm, điểm, số, để, một, đã, có, và nếu.</data>
+      <data key="d2">2025-07-17T21:00:10.191354Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.5</data>
+      <data key="d5">{"source_file": "ground_zero.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="c4ab3851-3981-4421-9e30-f78b14449fed">
+      <data key="d0">c4ab3851-3981-4421-9e30-f78b14449fed</data>
+      <data key="d1">Phân tích về file 'monologue_loop.py': </data>
+      <data key="d2">2025-07-17T21:00:17.425393Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.5</data>
+      <data key="d5">{"source_file": "monologue_loop.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="4a386c98-83ce-4dda-b402-acd29bcbd945">
+      <data key="d0">4a386c98-83ce-4dda-b402-acd29bcbd945</data>
+      <data key="d1">Phân tích về file 'genesis_patch.py': </data>
+      <data key="d2">2025-07-17T21:00:24.390456Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.5</data>
+      <data key="d5">{"source_file": "genesis_patch.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="782e29cb-b561-4b06-a152-7565b1ce8747">
+      <data key="d0">782e29cb-b561-4b06-a152-7565b1ce8747</data>
+      <data key="d1">Phân tích về file 'final_test.py': </data>
+      <data key="d2">2025-07-17T21:00:31.172206Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.5</data>
+      <data key="d5">{"source_file": "final_test.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="cad5b146-0ab8-4b27-bed6-1cecba5ad9a0">
+      <data key="d0">cad5b146-0ab8-4b27-bed6-1cecba5ad9a0</data>
+      <data key="d1">Phân tích về file 'foreman.py': </data>
+      <data key="d2">2025-07-17T21:00:38.121304Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.5</data>
+      <data key="d5">{"source_file": "foreman.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="588e1b91-4226-4eb0-8677-5db96c592761">
+      <data key="d0">588e1b91-4226-4eb0-8677-5db96c592761</data>
+      <data key="d1">Phân tích về file 'start_autobot_patrol.py': </data>
+      <data key="d2">2025-07-17T21:00:45.428218Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.5</data>
+      <data key="d5">{"source_file": "start_autobot_patrol.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="915ca564-3777-49f9-acc9-fa0e5082ee2e">
+      <data key="d0">915ca564-3777-49f9-acc9-fa0e5082ee2e</data>
+      <data key="d1">Phân tích về file 'run_single_test.py': Tìm hiện các cải tiến về logic. Tìm hiện các cải tiến về hiệu năng. Tìm hiện các cải tiến về hoặc sự rõ ràng.</data>
+      <data key="d2">2025-07-17T21:01:28.257976Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.5</data>
+      <data key="d5">{"source_file": "run_single_test.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="7b18ad7b-b02d-49f7-b8be-46a2f2bead1f">
+      <data key="d0">7b18ad7b-b02d-49f7-b8be-46a2f2bead1f</data>
+      <data key="d1">Phân tích về file 'brain_analyzer/scanner.py': </data>
+      <data key="d2">2025-07-17T21:01:35.469836Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.5</data>
+      <data key="d5">{"source_file": "brain_analyzer/scanner.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="c818070d-cab2-44b6-bdd3-6e05910d9ca9">
+      <data key="d0">c818070d-cab2-44b6-bdd3-6e05910d9ca9</data>
+      <data key="d1">Phân tích về file 'brain_analyzer/suggestion_engine.py': Như bài viết toán nhận thức có một điểm hình nữa, đề năm tại toán lần được các sự và chất về tất độ. Từ điểm hình nữa phát triệu đơn sản để bệnh nghiệp đến phải về dẫn điểm hình nữa để làm về các nghiệp thể lấy sử dụng.</data>
+      <data key="d2">2025-07-17T21:03:03.444163Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.5</data>
+      <data key="d5">{"source_file": "brain_analyzer/suggestion_engine.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="a385d2bc-4561-4c30-a9d0-18d80121fd13">
+      <data key="d0">a385d2bc-4561-4c30-a9d0-18d80121fd13</data>
+      <data key="d1">Phân tích về file 'brain_analyzer/__init__.py': </data>
+      <data key="d2">2025-07-17T21:03:10.179705Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.5</data>
+      <data key="d5">{"source_file": "brain_analyzer/__init__.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="e64254dd-f048-4a07-95b8-969cc137588c">
+      <data key="d0">e64254dd-f048-4a07-95b8-969cc137588c</data>
+      <data key="d1">Phân tích về file 'autobots/__init__.py': </data>
+      <data key="d2">2025-07-17T21:03:17.370776Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.5</data>
+      <data key="d5">{"source_file": "autobots/__init__.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="5034dc0f-cde6-4031-b672-995a8f81f52b">
+      <data key="d0">5034dc0f-cde6-4031-b672-995a8f81f52b</data>
+      <data key="d1">Phân tích về file 'autobots/review_bot.py': </data>
+      <data key="d2">2025-07-17T21:03:24.369699Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.5</data>
+      <data key="d5">{"source_file": "autobots/review_bot.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="b6b0b46c-64ee-4615-99f8-dc7b63f57250">
+      <data key="d0">b6b0b46c-64ee-4615-99f8-dc7b63f57250</data>
+      <data key="d1">Phân tích về file 'myiu/thought_streamer.py': </data>
+      <data key="d2">2025-07-17T21:03:31.835915Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.5</data>
+      <data key="d5">{"source_file": "myiu/thought_streamer.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="f67d6399-b3ce-4248-b139-c5e45951f55f">
+      <data key="d0">f67d6399-b3ce-4248-b139-c5e45951f55f</data>
+      <data key="d1">Phân tích về file 'myiu/emotional_cache.py': Từ étéo 'emotional_cache.py' dịch truyền về những các mất tử liên quý trước về nhân.</data>
+      <data key="d2">2025-07-17T21:04:01.715368Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.5</data>
+      <data key="d5">{"source_file": "myiu/emotional_cache.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="39a3b7ed-d28c-46df-8ec2-15de53089bbf">
+      <data key="d0">39a3b7ed-d28c-46df-8ec2-15de53089bbf</data>
+      <data key="d1">Phân tích về file 'myiu/resilience_engine.py': </data>
+      <data key="d2">2025-07-17T21:04:08.922044Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.5</data>
+      <data key="d5">{"source_file": "myiu/resilience_engine.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="bdee253e-b5a7-4cff-97e5-569f0f3e3e1d">
+      <data key="d0">bdee253e-b5a7-4cff-97e5-569f0f3e3e1d</data>
+      <data key="d1">Phân tích về file 'myiu/cortex.py': Nội vào một một thiên lệ sáng đề xuất các các điện hệ và các nghiệm thi tập tốt quốc gia.</data>
+      <data key="d2">2025-07-17T21:04:43.940020Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.5</data>
+      <data key="d5">{"source_file": "myiu/cortex.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="7db6a432-96b9-44ed-aa07-71626de67087">
+      <data key="d0">7db6a432-96b9-44ed-aa07-71626de67087</data>
+      <data key="d1">Phân tích về file 'myiu/volition_core.py': </data>
+      <data key="d2">2025-07-17T21:04:50.837448Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.5</data>
+      <data key="d5">{"source_file": "myiu/volition_core.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="e0289681-b5ae-4fe7-84ad-17a0ae996cf8">
+      <data key="d0">e0289681-b5ae-4fe7-84ad-17a0ae996cf8</data>
+      <data key="d1">Phân tích về file 'myiu/ontology_auditor.py': Từ file</data>
+      <data key="d2">2025-07-17T21:04:59.723663Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.5</data>
+      <data key="d5">{"source_file": "myiu/ontology_auditor.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="415cfc48-0c9f-42ce-9866-e045794a5b3c">
+      <data key="d0">415cfc48-0c9f-42ce-9866-e045794a5b3c</data>
+      <data key="d1">Phân tích về file 'myiu/app_context.py': </data>
+      <data key="d2">2025-07-17T21:05:06.477698Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.5</data>
+      <data key="d5">{"source_file": "myiu/app_context.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="372e0050-0fde-4172-a307-6df48fdc01b7">
+      <data key="d0">372e0050-0fde-4172-a307-6df48fdc01b7</data>
+      <data key="d1">Phân tích về file 'myiu/temporal_drift.py': </data>
+      <data key="d2">2025-07-17T21:05:13.563755Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.5</data>
+      <data key="d5">{"source_file": "myiu/temporal_drift.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="47026f90-6b8b-4636-9af7-a2df374e900a">
+      <data key="d0">47026f90-6b8b-4636-9af7-a2df374e900a</data>
+      <data key="d1">Phân tích về file 'myiu/base_module.py': </data>
+      <data key="d2">2025-07-17T21:05:20.250472Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.5</data>
+      <data key="d5">{"source_file": "myiu/base_module.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="2bd20d0c-9c2a-460b-9494-7a9a0b019fef">
+      <data key="d0">2bd20d0c-9c2a-460b-9494-7a9a0b019fef</data>
+      <data key="d1">Phân tích về file 'myiu/identity_rebuilder.py': </data>
+      <data key="d2">2025-07-17T21:05:27.351130Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.5</data>
+      <data key="d5">{"source_file": "myiu/identity_rebuilder.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="c4622fe7-bac2-453a-9462-ef5f212ac13a">
+      <data key="d0">c4622fe7-bac2-453a-9462-ef5f212ac13a</data>
+      <data key="d1">Phân tích về file 'myiu/websocket_manager.py': Trung trợ, vào mỗi năm điện ảnh phát triển được từ bị về các giá trị đội khác vào điều thế.</data>
+      <data key="d2">2025-07-17T21:06:04.102603Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.5</data>
+      <data key="d5">{"source_file": "myiu/websocket_manager.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="b7cbf42f-1b33-4d97-8b0e-c75b0eb14840">
+      <data key="d0">b7cbf42f-1b33-4d97-8b0e-c75b0eb14840</data>
+      <data key="d1">Phân tích về file 'myiu/essence_compiler.py': Tới địa tướng, thứ tự những xuất các cải tiến về phục sự, câu tư, câu tích đề cải tiến về Đức Huy.</data>
+      <data key="d2">2025-07-17T21:06:47.046926Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.5</data>
+      <data key="d5">{"source_file": "myiu/essence_compiler.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="b33fa5cb-c2b4-40a2-b145-cf568ff40098">
+      <data key="d0">b33fa5cb-c2b4-40a2-b145-cf568ff40098</data>
+      <data key="d1">Phân tích về file 'myiu/consensus_engine.py': </data>
+      <data key="d2">2025-07-17T21:06:53.785383Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.5</data>
+      <data key="d5">{"source_file": "myiu/consensus_engine.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="55fb198d-6821-4397-9249-281a53453bf7">
+      <data key="d0">55fb198d-6821-4397-9249-281a53453bf7</data>
+      <data key="d1">Phân tích về file 'myiu/affect.py': </data>
+      <data key="d2">2025-07-17T21:07:00.733071Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.5</data>
+      <data key="d5">{"source_file": "myiu/affect.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="9765c2a1-61ee-4169-b855-12baa63c384d">
+      <data key="d0">9765c2a1-61ee-4169-b855-12baa63c384d</data>
+      <data key="d1">Phân tích về file 'myiu/ontology_mutator.py': </data>
+      <data key="d2">2025-07-17T21:07:07.895238Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.5</data>
+      <data key="d5">{"source_file": "myiu/ontology_mutator.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="205aac0e-6803-4d18-9aab-4cd536a6d78e">
+      <data key="d0">205aac0e-6803-4d18-9aab-4cd536a6d78e</data>
+      <data key="d1">Phân tích về file 'myiu/gen_editor.py': </data>
+      <data key="d2">2025-07-17T21:07:14.890274Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.5</data>
+      <data key="d5">{"source_file": "myiu/gen_editor.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="72844200-ce45-44ab-9464-b20e917ad04c">
+      <data key="d0">72844200-ce45-44ab-9464-b20e917ad04c</data>
+      <data key="d1">Phân tích về file 'myiu/event_bus.py': </data>
+      <data key="d2">2025-07-17T21:07:21.563214Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.5</data>
+      <data key="d5">{"source_file": "myiu/event_bus.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+    <node id="8d87fa22-ec06-4457-b2ea-3e4baeabd2c8">
+      <data key="d0">8d87fa22-ec06-4457-b2ea-3e4baeabd2c8</data>
+      <data key="d1">Phân tích về file 'myiu/__init__.py': </data>
+      <data key="d2">2025-07-17T21:07:28.496788Z</data>
+      <data key="d3">self_reflection_discovery</data>
+      <data key="d4">0.5</data>
+      <data key="d5">{"source_file": "myiu/__init__.py"}</data>
+      <data key="d6">[]</data>
+    </node>
+  </graph>
+</graphml>

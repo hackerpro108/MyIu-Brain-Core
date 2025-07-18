@@ -1,0 +1,31 @@
+# Môi trường ảo
+myiu_env/
+.venv/
+env/
+
+# Log & tạm
+*.log
+nohup.out
+*.tmp
+*.bak
+.DS_Store
+__pycache__/
+*.py[cod]
+*.pyo
+
+# File mô hình hoặc file nặng
+*.pt
+*.so
+*.gguf
+*.ckpt
+*.weights
+*.glb
+*.vrm
+
+# DB / dữ liệu riêng
+*.db
+*.sqlite3
+
+# Editor configs
+.vscode/
+.idea/

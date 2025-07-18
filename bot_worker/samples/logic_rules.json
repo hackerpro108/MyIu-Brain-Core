@@ -1,0 +1,17 @@
+{
+  "job_id": "JOB-001-REFACTOR",
+  "priority": 1,
+  "target_file": "bot_worker/samples/app_to_modify.py",
+  "actions": [
+    {
+      "type": "replace_variable",
+      "name": "BOT_VERSION",
+      "value": "\"4.0.0-standardized\""
+    },
+    {
+      "type": "insert_function",
+      "func_content": "def standardized_test():\n    \"\"\"This function was inserted by a Standardized Worker.\"\"\"\n    return 'OK'",
+      "position": "end"
+    }
+  ]
+}

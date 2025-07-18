@@ -1,0 +1,6 @@
+● fortress-api.service - MyIu Fortress API Service
+     Loaded: loaded (]8;;file://skynewbie-579271.thuevpsgiare.com.vn/etc/systemd/system/fortress-api.service/etc/systemd/system/fortress-api.service]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)
+     Active: activating (auto-restart) (Result: exit-code) since Sun 2025-07-13 13:12:03 UTC; 2s ago
+    Process: 648456 ExecStart=/usr/local/bin/uvicorn fortress_api:app --host 0.0.0.0 --port 12440 [0;1;31m(code=exited, status=1/FAILURE)[0m
+   Main PID: 648456 (code=exited, status=1/FAILURE)
+        CPU: 801ms

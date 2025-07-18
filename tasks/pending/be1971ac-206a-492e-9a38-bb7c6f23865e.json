@@ -1,0 +1,11 @@
+{
+  "task_id": "be1971ac-206a-492e-9a38-bb7c6f23865e",
+  "target_file": "test.py",
+  "source_code": "import sys\n",
+  "actions": [
+    {
+      "action": "delete_line",
+      "line": 1
+    }
+  ]
+}

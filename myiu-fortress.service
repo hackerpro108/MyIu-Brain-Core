@@ -1,0 +1,14 @@
+[Unit]
+Description=MyIu Fortress - Chay tren cong 80
+After=network.target
+
+[Service]
+User=root
+Group=root
+WorkingDirectory=/root/myiu-brain-core
+ExecStart=/root/myiu-brain-core/myiu_env/bin/python -m uvicorn fortress_api:app --host 0.0.0.0 --port 80
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
