@@ -11,6 +11,9 @@ from myiu.autobot.scanner import CodeScanner
 from myiu.autobot.suggestion_engine import SuggestionEngine
 from myiu.websocket_manager import manager as websocket_manager
 
+
+print("🔥 cortex mới đã hoạt động!")
+
 class Cortex(AsyncModule):
     def __init__(self, app_context: AppContext):
         super().__init__(app_context)
@@ -33,6 +36,18 @@ class Cortex(AsyncModule):
         await self.event_bus.subscribe("user_message", self._handle_user_message)
         self.log.info("Cortex đã sẵn sàng nhận lệnh.")
 
+    # --- HÀM MỚI ĐỂ NHẬN LỆNH TỪ WEBSOCKET ---
+    async def handle_command_from_websocket(self, command_text: str):
+        """
+        Cổng vào mới cho lệnh từ UI.
+        Hàm này nhận lệnh và đưa nó vào EventBus để tái sử dụng luồng xử lý cũ.
+        """
+        await self._log_thought(f"Lệnh '{command_text}' nhận qua WebSocket.")
+        # Đưa lệnh vào EventBus, giống hệt như API /ipc/message đang làm
+        await self.event_bus.publish("user_message", {"text": command_text})
+
+
+    # --- CÁC HÀM CŨ GIỮ NGUYÊN ---
     async def _log_thought(self, content: str, origin: str = "Cortex"):
         chunk = ThoughtChunk(origin=origin, content=content)
         if self.thought_stream:
@@ -43,12 +58,10 @@ class Cortex(AsyncModule):
         message = event_data.get("text", "").strip()
         await self._log_thought(f"Nhận được lệnh: '{message}'")
         
-        # Logic phân tích lệnh tự nhiên
         if "phân tích" in message.lower() and "sửa lỗi" in message.lower() and "file" in message.lower():
             match = re.search(r'file\s+([\w\./\\]+)', message)
             if match:
                 target_file = match.group(1).strip()
-                # --- NÂNG CẤP: Kiểm tra file tồn tại trước khi hành động ---
                 if not os.path.exists(target_file):
                     await self._log_thought(f"Lỗi: File '{target_file}' không tồn tại. Vui lòng tạo file trước.")
                     return
