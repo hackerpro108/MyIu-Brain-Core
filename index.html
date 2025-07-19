@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyIu Command Center v2.4 [Worker Fleet]</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+        :root {
+            --bg-color: #0d0c1d; --text-color: #e0e0e0; --cyan: #00e5ff; --magenta: #ff00c1; --purple: #9d72ff;
+            --panel-bg: rgba(23, 22, 49, 0.5); --border-color: rgba(255, 255, 255, 0.1); --green: #22c55e; --red: #ef4444; --gray: #6b7280;
+        }
+        body { font-family: 'Share Tech Mono', monospace; background-color: var(--bg-color); color: var(--text-color); background-image: radial-gradient(circle at 1% 1%, var(--cyan), transparent 25%), radial-gradient(circle at 99% 99%, var(--magenta), transparent 25%); background-attachment: fixed; }
+        #command-center { display: grid; height: 100vh; width: 100vw; grid-template-areas: "status" "main" "stream"; grid-template-rows: auto 1fr auto; grid-template-columns: 100%; }
+        @media (min-width: 1024px) { #command-center { grid-template-areas: "stream main status"; grid-template-columns: 350px 1fr 350px; grid-template-rows: 100%; padding: 1rem; gap: 1rem; } }
+        #live-stream-panel { grid-area: stream; } #main-console-panel { grid-area: main; } #status-panel { grid-area: status; }
+        .panel { background: var(--panel-bg); border: 1px solid var(--border-color); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        .panel h2 { text-shadow: 0 0 8px currentColor; } #live-stream-panel { border-color: rgba(255, 0, 193, 0.3); }
+        #live-stream-panel h2 { color: var(--magenta); } #main-console-panel { border-color: rgba(0, 229, 255, 0.3); }
+        #main-console-panel #output, #main-console-panel #command-input, #main-console-panel .prompt-char { color: var(--cyan); }
+        #main-console-panel .typing-cursor { background-color: var(--cyan); } #status-panel { border-color: rgba(157, 114, 255, 0.3); }
+        #status-panel h2 { color: var(--purple); } .typing-cursor { display: inline-block; width: 8px; height: 1.2em; animation: blink 1s infinite; }
+        @keyframes blink { 50% { opacity: 0; } } .breathing-glow { animation: breathing 5s ease-in-out infinite; }
+        @keyframes breathing { 0%, 100% { box-shadow: 0 0 20px 0px var(--purple); } 50% { box-shadow: 0 0 35px 5px var(--purple); } }
+        ::-webkit-scrollbar { width: 5px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: var(--cyan); border-radius: 5px; }
+    </style>
+</head>
+<body class="overflow-hidden">
+    <div id="command-center">
+        <div id="live-stream-panel" class="panel p-4 flex flex-col m-2 lg:m-0 rounded-lg">
+            <h2 class="font-bold border-b border-white/10 pb-2 mb-2">LIVE THOUGHT STREAM</h2>
+            <div id="thought-stream-content" class="flex-grow overflow-y-auto text-sm space-y-1 pr-2"></div>
+        </div>
+        <div id="main-console-panel" class="panel p-4 flex flex-col m-2 lg:m-0 rounded-lg">
+            <div id="output" class="flex-grow overflow-y-auto space-y-2 pr-2">
+                <p>> MyIu v2.4 Initialized. Waiting for command.</p>
+                <p>> <span class="typing-cursor"></span></p>
+            </div>
+            <div class="mt-2 pt-2 border-t border-white/10 flex items-center">
+                <span class="prompt-char">$ </span>
+                <input id="command-input" class="flex-grow bg-transparent focus:outline-none ml-2" autocomplete="off" placeholder="...">
+            </div>
+        </div>
+        <div id="status-panel" class="panel p-4 flex flex-col m-2 lg:m-0 rounded-lg">
+            <div id="avatar-container" class="w-full h-48 lg:h-64 mb-4 flex items-center justify-center">
+                <img id="myiu-avatar" src="https://i.imgur.com/S9gKdfb.png" alt="MyIu Avatar" class="w-32 h-32 lg:w-48 lg:h-48 rounded-full object-cover breathing-glow border-2 transition-all duration-500" style="border-color: var(--purple);">
+            </div>
+            <div class="flex-grow overflow-y-auto pr-2">
+                <h2 class="font-bold border-b border-white/10 pb-2 mb-2">SYSTEM STATUS</h2>
+                <div id="status-content" class="text-sm space-y-2">
+                    <p><span class="text-gray-400">SOMA:</span> <span class="font-bold">...</span></p>
+                    <p><span class="text-gray-400">MEMORY:</span> <span class="font-bold">...</span></p>
+                    <p><span class="text-gray-400">TASK:</span> <span class="font-bold">...</span></p>
+                </div>
+                <h3 class="font-bold border-b border-white/10 pb-2 mt-4 mb-2 text-purple-300/80">WORKER FLEET</h3>
+                <div id="worker-list" class="text-sm space-y-1">
+                    <p class="text-gray-500">Awaiting worker data...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/static/script.js"></script>
+</body>
+</html>

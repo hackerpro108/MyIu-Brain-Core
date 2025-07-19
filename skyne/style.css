@@ -1,0 +1,190 @@
+/* --- Font & Custom Styles --- */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&family=Roboto+Mono:wght@400;700&display=swap');
+
+body {
+    font-family: 'Share Tech Mono', monospace; /* Default text */
+    background-color: #0d1117;
+    color: #e6edf3;
+    background-image: linear-gradient(rgba(0, 255, 204, 0.015) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(0, 255, 204, 0.015) 1px, transparent 1px);
+    background-size: 20px 20px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Specific font classes */
+.orbitron { font-family: 'Orbitron', sans-serif; }
+.share-tech-mono { font-family: 'Share Tech Mono', monospace; }
+
+/* --- Grid Layout --- */
+#command-center {
+    display: grid;
+    height: 100vh;
+    width: 100vw;
+    gap: 0.5rem; /* Reduced gap for mobile */
+    padding: 0.5rem; /* Reduced padding for mobile */
+
+    /* Mobile Layout (default) */
+    grid-template-areas:
+        "ai-status"
+        "main-content"
+        "status-panel"
+        "navigation";
+    grid-template-rows: auto 1fr auto auto; /* AI Status, Main, Status, Navigation */
+    grid-template-columns: 100%;
+}
+
+/* Desktop Layout (screens larger than 1024px) */
+@media (min-width: 1024px) {
+    #command-center {
+        grid-template-areas:
+            "navigation ai-status status-panel"
+            "navigation main-content status-panel";
+        grid-template-columns: 280px 1fr 300px; /* Sidebar, Main, Status */
+        grid-template-rows: auto 1fr; /* AI Status at top of its column, Main/Status below */
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    #ai-status-panel {
+        grid-area: ai-status;
+        /* For desktop, AI status stretches across main content & status panel */
+        grid-column: main-content-start / status-panel-end;
+        margin-bottom: 0; /* Adjust margin for desktop grid */
+    }
+}
+
+/* Assign areas to grid regions */
+#ai-status-panel { grid-area: ai-status; }
+#navigation-panel { grid-area: navigation; }
+#main-content-area { grid-area: main-content; display: flex; flex-direction: column; }
+#status-panel { grid-area: status-panel; }
+
+/* Flex behavior for content sections within main-content-area */
+.content-section {
+    display: none; /* Hidden by default, managed by JS */
+    flex-grow: 1; /* Make them fill available height */
+    flex-direction: column; /* Ensure internal content stacks */
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out; /* Fade effect */
+}
+.content-section.active {
+    display: flex; /* Active section is displayed */
+    opacity: 1;
+}
+
+/* Typing cursor effect */
+.typing-cursor {
+    display: inline-block;
+    width: 8px;
+    height: 1.2em;
+    background-color: #00ffcc; /* Cyan glow */
+    animation: blink 1s infinite;
+    box-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc; /* Add glow */
+}
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: #1a202c; /* Darker track */ }
+::-webkit-scrollbar-thumb {
+    background: #00ffcc; /* Cyan */
+    border-radius: 5px;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #805ad5; /* Purple */
+    box-shadow: 0 0 8px #805ad5; /* Purple glow on hover */
+}
+::-webkit-scrollbar-corner { background: transparent; } /* Hide corner */
+
+/* Chat specific styles - Enhanced Contrast */
+.user-command {
+    color: #fcd34d; /* Yellow for user input */
+    font-weight: bold;
+    /* text-shadow: 0 0 5px rgba(252, 211, 77, 0.5); /* Subtle glow */
+}
+
+.myiu-response {
+    color: #00e6b8; /* Slightly darker cyan for MyIu's responses, more distinct */
+    /* text-shadow: 0 0 5px rgba(0, 255, 204, 0.5); /* Subtle glow */
+}
+
+/* Navigation button styles */
+.nav-tab-btn {
+    color: #e6edf3;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.9rem;
+    transition: all 0.2s ease-in-out;
+    display: flex; /* For icon and text alignment */
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-tab-btn:hover {
+    color: #ffffff;
+    background-color: #805ad5; /* Purple */
+    box-shadow: 0 0 10px rgba(128, 90, 213, 0.5); /* Subtle glow */
+    transform: translateY(-2px); /* Slight lift */
+}
+
+.nav-tab-btn.active {
+    background-color: #805ad5; /* Purple */
+    color: #ffffff;
+    box-shadow: 0 0 15px rgba(128, 90, 213, 0.7); /* Stronger glow */
+    border-left: 3px solid #00ffcc; /* Highlight border */
+    font-weight: bold;
+}
+
+/* Panel Glow Effects */
+.panel-glow {
+    box-shadow: 0 0 15px rgba(252, 211, 77, 0.2), 0 0 20px rgba(252, 211, 77, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.panel-glow-cyan {
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.2), 0 0 20px rgba(0, 255, 204, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.panel-glow-pink {
+    box-shadow: 0 0 15px rgba(236, 72, 153, 0.2), 0 0 20px rgba(236, 72, 153, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.panel-glow-blue {
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.2), 0 0 20px rgba(59, 130, 246, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.panel-glow-purple {
+    box-shadow: 0 0 15px rgba(128, 90, 213, 0.2), 0 0 20px rgba(128, 90, 213, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+/* Mobile specific nav styles */
+@media (max-width: 1023px) {
+    #navigation-panel {
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        margin: 0.5rem; /* Consistent margin for mobile */
+    }
+    .nav-tab-btn {
+        font-size: 0.75rem;
+        padding: 0.25rem;
+    }
+    .nav-tab-btn i {
+        margin-bottom: 0.25rem;
+    }
+    .nav-tab-btn.active {
+        border-left: none; /* Remove left border highlight on mobile */
+        border-bottom: 3px solid #00ffcc; /* Add bottom border highlight */
+    }
+}

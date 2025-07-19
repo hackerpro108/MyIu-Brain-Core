@@ -2,106 +2,138 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyIu Command Center v2.0</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>MyIu NeoConsole - AI Di Động</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* --- Font & Custom Styles --- */
-        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
-        body {
-            font-family: 'Roboto Mono', monospace;
-            background-color: #0d1117;
-            color: #e6edf3;
-            background-image: linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
-            background-size: 20px 20px;
-        }
-
-        /* --- Bố cục Grid --- */
-        #command-center {
-            display: grid;
-            height: 100vh;
-            width: 100vw;
-            /* Bố cục cho Mobile (mặc định) */
-            grid-template-areas:
-                "status"
-                "main"
-                "stream";
-            grid-template-rows: auto 1fr auto;
-            grid-template-columns: 100%;
-        }
-
-        /* Bố cục cho Desktop (màn hình lớn hơn 1024px) */
-        @media (min-width: 1024px) {
-            #command-center {
-                grid-template-areas: "stream main status";
-                grid-template-columns: 300px 1fr 300px;
-                grid-template-rows: 100%;
-                padding: 1rem;
-                gap: 1rem;
-            }
-        }
-        
-        /* Gán các vùng vào khu vực grid */
-        #live-stream-panel { grid-area: stream; }
-        #main-console-panel { grid-area: main; }
-        #status-panel { grid-area: status; }
-        
-        /* Hiệu ứng con trỏ gõ chữ */
-        .typing-cursor {
-            display: inline-block;
-            width: 8px;
-            height: 1.2em;
-            background-color: #58a6ff;
-            animation: blink 1s infinite;
-        }
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        /* Tùy chỉnh thanh cuộn */
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #58a6ff; border-radius: 5px; }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/static_assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body class="overflow-hidden">
+<body class="overflow-hidden"> 
 
-    <div id="command-center">
-        
-        <div id="live-stream-panel" class="bg-black/30 p-4 flex flex-col m-2 lg:m-0 rounded-lg border border-pink-500/30">
-            <h2 class="text-pink-400 font-bold border-b border-pink-500/30 pb-2 mb-2">LIVE THOUGHT STREAM</h2>
-            <div class="flex-grow overflow-y-auto text-sm space-y-1">
-                <p><span class="text-pink-300">Cortex:</span> Analyzing user intent...</p>
-                <p><span class="text-pink-300">Foreman:</span> Task queue empty.</p>
+    <div id="app-container">
+        <div id="ai-status-bar" class="p-3 bg-black/50 border-b border-yellow-500/30 flex justify-between items-center text-sm">
+            <div class="flex items-center space-x-2">
+                <span class="relative flex h-3 w-3">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500 ai-status-dot"></span>
+                </span>
+                <span id="ai-status-text" class="text-green-400 font-bold orbitron">TRỰC TUYẾN</span>
+            </div>
+            <div class="text-yellow-300 roboto-mono">
+                Sức mạnh: <span id="processing-power">75%</span>
+            </div>
+            <div id="ai-alert" class="text-red-400 hidden roboto-mono">
+                <span class="font-bold">CẢNH BÁO:</span> Hệ thống bất thường!
             </div>
         </div>
 
-        <div id="main-console-panel" class="bg-black/30 p-4 flex flex-col m-2 lg:m-0 rounded-lg border border-cyan-500/30">
-            <div id="output" class="flex-grow overflow-y-auto text-cyan-300 space-y-2">
-                <p>> MyIu v2.0 Initialized. Waiting for command.</p>
-                <p>> <span class="typing-cursor"></span></p>
+        <div id="main-content-area" class="flex-grow flex flex-col p-2">
+            <div id="chat-interface" class="content-panel active bg-black/30 flex flex-col rounded-lg border border-cyan-500/30 h-full panel-glow-cyan">
+                <div class="panel-header text-cyan-400 orbitron">GIAO DIỆN CHAT</div>
+                <div id="output" class="flex-grow overflow-y-auto p-2 text-cyan-300 space-y-2 text-base roboto-mono">
+                    <p class="myiu-response">> MyIu NeoConsole phiên bản 7.0 đã khởi tạo. Sẵn sàng nhận lệnh.</p>
+                    <p class="current-typing-line"><span class="typing-cursor"></span></p>
+                </div>
+                <div class="input-area flex items-center space-x-2 border-t border-cyan-500/30 p-2">
+                    <i id="mic-btn" class="fas fa-microphone text-gray-500 hover:text-cyan-400 cursor-pointer transition-colors duration-200 text-lg"></i>
+                    <input id="command-input" class="w-full bg-transparent text-cyan-300 focus:outline-none text-base placeholder-gray-600" placeholder="Nhập lệnh..." maxlength="200">
+                    <button id="send-command-btn" class="hidden lg:block bg-cyan-700/30 text-cyan-300 px-3 py-1 rounded-lg border border-cyan-500/50 hover:bg-cyan-600/50 active:scale-95 transition-all duration-150 text-sm">
+                        <i class="fas fa-paper-plane"></i> Gửi
+                    </button>
+                    <div id="ai-response-indicator" class="w-3 h-3 rounded-full bg-cyan-500/50 hidden pulse-fade-animation"></div>
+                </div>
+                <div id="command-suggestions" class="bg-black/40 text-xs text-gray-400 p-1 rounded-b-lg hidden">
+                    </div>
             </div>
-            <div class="mt-2 pt-2 border-t border-cyan-500/30">
-                <input id="command-input" class="w-full bg-transparent text-cyan-300 focus:outline-none" placeholder="Enter command...">
+
+            <div id="ai-thought-log" class="content-panel bg-black/30 flex-col rounded-lg border border-pink-500/30 h-full panel-glow-pink hidden">
+                 <div class="panel-header text-pink-400 orbitron">DÒNG SUY NGHĨ</div>
+                <div id="thoughts" class="flex-grow overflow-y-auto p-2 text-sm space-y-2 roboto-mono">
+                    </div>
+            </div>
+
+            <div id="system-logs" class="content-panel bg-black/30 flex-col rounded-lg border border-blue-500/30 h-full panel-glow-blue hidden">
+                <div class="panel-header text-blue-400 orbitron">NHẬT KÝ HỆ THỐNG</div>
+                <div id="log-output" class="flex-grow overflow-y-auto p-2 text-sm space-y-1 text-gray-400 roboto-mono">
+                    <p class="log-entry log-info">[07:40:00] <span class="log-label-info">THÔNG TIN:</span> Hệ thống khởi động.</p>
+                    <p class="log-entry log-info">[07:40:01] <span class="log-label-info">THÔNG TIN:</span> Module cốt lõi tải xong.</p>
+                    <p class="log-entry log-warn">[07:40:03] <span class="log-label-warn">CẢNH BÁO:</span> Bộ nhớ thấp.</p>
+                    <p class="log-entry log-info">[07:40:05] <span class="log-label-info">THÔNG TIN:</span> Kết nối WebSocket được thiết lập. Độ trễ: 12ms.</p>
+                </div>
+            </div>
+
+            <div id="internal-personas" class="content-panel bg-black/30 flex-col rounded-lg border border-purple-500/30 h-full panel-glow-purple hidden">
+                <div class="panel-header text-purple-400 orbitron">NHÂN CÁCH AI</div>
+                <div class="flex-grow overflow-y-auto p-2 text-sm space-y-4 text-gray-400 roboto-mono">
+                    <div><h3 class="text-purple-300 font-bold orbitron">Cortex</h3><p>Logic chính & ra quyết định.</p></div>
+                    <div><h3 class="text-purple-300 font-bold orbitron">Foreman</h3><p>Quản lý tác vụ & thực thi.</p></div>
+                </div>
+            </div>
+
+            <div id="data-visuals" class="content-panel bg-black/30 flex-col rounded-lg border border-green-500/30 h-full panel-glow-green hidden">
+                <div class="panel-header text-green-400 orbitron">TRỰC QUAN DỮ LIỆU</div>
+                <div class="flex-grow flex flex-col items-center justify-center p-2 text-gray-500 text-sm roboto-mono space-y-4">
+                    <p class="text-green-300">-- MODULE PHÂN TÍCH ĐANG HOẠT ĐỘNG --</p>
+                    <canvas id="system-graph-placeholder" class="w-full h-32 bg-gray-900/50 border border-gray-700 rounded"></canvas>
+                    <p class="text-gray-500 text-xs">TỔNG QUAN HỆ THỐNG</p>
+                </div>
             </div>
         </div>
 
-        <div id="status-panel" class="bg-black/30 p-4 flex flex-col m-2 lg:m-0 rounded-lg border border-purple-500/30">
-            <div id="myiu-avatar" class="w-full h-48 bg-purple-900/50 rounded-lg mb-4 flex items-center justify-center">
-                <p class="text-purple-300 text-xs">AVATAR</p>
+        <div id="bottom-nav" class="bg-black/50 p-2 m-2 rounded-lg border border-purple-500/30 flex justify-around text-xs roboto-mono">
+            <button class="nav-btn active flex flex-col items-center p-1 px-2" data-target="chat-interface">
+                <i class="fas fa-comments text-xl"></i><span>Chat</span>
+            </button>
+            <button class="nav-btn flex flex-col items-center p-1 px-2" data-target="ai-thought-log">
+                <i class="fas fa-brain text-xl"></i><span>Suy nghĩ</span>
+            </button>
+            <button class="nav-btn flex flex-col items-center p-1 px-2" data-target="system-logs">
+                <i class="fas fa-clipboard-list text-xl"></i><span>Nhật ký</span>
+            </button>
+            <button class="nav-btn flex flex-col items-center p-1 px-2" data-target="internal-personas">
+                <i class="fas fa-user-secret text-xl"></i><span>Nhân cách</span>
+            </button>
+            <button class="nav-btn flex flex-col items-center p-1 px-2" data-target="data-visuals">
+                <i class="fas fa-chart-bar text-xl"></i><span>Dữ liệu</span>
+            </button>
+        </div>
+
+        <div id="detail-panel" class="bg-black/40 p-4 m-2 rounded-lg border border-purple-500/30 panel-glow-purple hidden">
+            <div class="flex justify-between items-center border-b border-purple-500/30 pb-2 mb-2">
+                <h3 class="text-purple-300 font-bold orbitron">THÔNG TIN CHI TIẾT</h3>
+                <button id="close-detail-panel" class="text-red-500 hover:text-red-300 text-xl">&times;</button>
             </div>
-            <h2 class="text-purple-300 font-bold border-b border-purple-500/30 pb-2 mb-2">STATUS</h2>
-            <div class="flex-grow text-sm space-y-2">
-                <p><span class="text-purple-200">SOMA:</span> 😌 CALM</p>
-                <p><span class="text-purple-200">MEMORY:</span> 382 entries</p>
-                <p><span class="text-purple-200">TASK:</span> IDLE</p>
+            <div id="detail-content" class="text-sm roboto-mono space-y-2">
+                <p><span class="text-purple-200">SOMA:</span> <span id="detail-soma">😌 BÌNH TĨNH</span></p>
+                <p><span class="text-purple-200">BỘ NHỚ:</span> <span id="detail-memory">382 mục</span></p>
+                <p><span class="text-purple-200">CPU:</span> <span id="detail-cpu">25%</span></p>
+                <p><span class="text-purple-200">RAM:</span> <span id="detail-ram">12GB / 32GB</span></p>
+                <p><span class="text-purple-200">NHIỆT ĐỘ:</span> <span id="detail-temp">35°C</span></p>
+                <p><span class="text-purple-200">MẠNG:</span> <span id="detail-network">1.2 Mbps</span></p>
+                <p><span class="text-purple-200">FPS:</span> <span id="detail-fps">60</span></p>
+                <p><span class="text-purple-200">NĂNG LƯỢNG:</span> <span id="detail-energy">98%</span></p>
             </div>
         </div>
 
     </div>
+
+    <div id="terminal-overlay" class="fixed inset-0 bg-black/95 z-50 flex flex-col hidden p-4 font-mono text-white opacity-0">
+        <div class="flex justify-between items-center mb-4 border-b border-gray-700 pb-2">
+            <span class="text-lg orbitron text-cyan-400">GIAO DIỆN DÒNG LỆNH AI</span>
+            <button id="close-terminal-btn" class="text-red-500 hover:text-red-300 text-2xl">&times;</button>
+        </div>
+        <div id="terminal-output" class="flex-grow overflow-y-auto bg-black/70 p-2 rounded-lg border border-gray-700 mb-4 text-sm roboto-mono">
+            <p><span class="text-green-400">myiu@core</span>:~ $ Đang khởi tạo shell bảo mật...</p>
+            <p><span class="text-green-400">myiu@core</span>:~ $ Chào mừng, Chỉ huy. Gõ 'help' để xem các lệnh có sẵn.</p>
+            <p class="terminal-current-line"><span class="text-green-400">myiu@core</span>:~ $ <span class="typing-cursor-terminal"></span></p>
+        </div>
+        <div class="input-area flex items-center space-x-2">
+            <span class="text-green-400">myiu@core</span>:~ $
+            <input id="terminal-input" class="flex-grow bg-transparent text-green-300 focus:outline-none border-b border-green-500/50 pb-1" placeholder="Nhập lệnh CLI...">
+        </div>
+    </div>
     
-    <script src="/static/script.js"></script>
+    <script src="/static_assets/script.js"></script>
 </body>
 </html>

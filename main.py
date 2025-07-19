@@ -1,7 +1,7 @@
 import uvicorn
 import asyncio
 from fastapi import FastAPI, Request
-from fastapi.staticfiles import StaticFiles
+from fastapi.staticfiles import StaticFiles # Đây là import gốc, không sửa
 from contextlib import asynccontextmanager
 from myiu.logging_config import setup_logging, get_logger
 from soma import Soma
@@ -64,10 +64,16 @@ async def websocket_endpoint(websocket: WebSocket):
     except WebSocketDisconnect:
         websocket_manager.disconnect(websocket)
 
+# Dòng này giữ nguyên như bạn đã có. Nó phục vụ các file gốc trong thư mục 'skyne'.
 app.mount("/static", StaticFiles(directory="skyne"), name="static")
+
+# === BỔ SUNG MỚI ĐỂ PHỤC VỤ CÁC FILE TĨNH TRONG THƯ MỤNG /skyne/static/ ===
+# Đây là phần quan trọng để ảnh và CSS/JS tải đúng đường dẫn /static/
+app.mount("/static_assets", StaticFiles(directory="skyne/static"), name="static_assets")
 
 @app.get("/")
 async def read_index():
+    # Đảm bảo đường dẫn này đúng là file index.html nằm trong thư mục skyne
     return FileResponse('skyne/index.html')
 
 if __name__ == "__main__":

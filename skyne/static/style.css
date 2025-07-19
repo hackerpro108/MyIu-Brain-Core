@@ -1,0 +1,438 @@
+/* --- Fonts & Styles --- */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Orbitron:wght@400;700&display=swap');
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto Mono', monospace; /* Default text for mobile clarity */
+    background-color: var(--bg-primary); /* Use CSS variables for themes */
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    overflow: hidden; /* Ensure no unwanted scrollbars */
+    transition: background-color 0.3s ease; /* Smooth transition for theme change */
+}
+
+/* Theme Variables (Default: Cyan Theme) */
+body.theme-cyan {
+    --bg-primary: #0d1117;
+    --bg-secondary: #1a202c;
+    --border-main: #00ffcc; /* Cyan */
+    --border-accent: #805ad5; /* Purple */
+    --text-primary: #e6edf3;
+    --text-accent: #00e6b8; /* MyIu response color */
+    --text-user: #fcd34d; /* User command color */
+    --panel-header-color: #00ffcc;
+    --text-terminal: #4ade80; /* Fixed green for terminal */
+}
+
+body.theme-purple {
+    --bg-primary: #121020;
+    --bg-secondary: #241c30;
+    --border-main: #805ad5; /* Purple */
+    --border-accent: #00ffcc; /* Cyan */
+    --text-primary: #f0e6ff;
+    --text-accent: #be82ff;
+    --text-user: #fcd34d;
+    --panel-header-color: #805ad5;
+    --text-terminal: #4ade80;
+}
+
+body.theme-orange {
+    --bg-primary: #170d0d;
+    --bg-secondary: #2c1a1a;
+    --border-main: #fcd34d; /* Orange/Yellow */
+    --border-accent: #ef4444; /* Red */
+    --text-primary: #fff8e6;
+    --text-accent: #ffcc00;
+    --text-user: #7dd3fc; /* Light blue for user */
+    --panel-header-color: #fcd34d;
+    --text-terminal: #4ade80;
+}
+
+body.theme-stealth {
+    --bg-primary: #000000;
+    --bg-secondary: #0a0a0a;
+    --border-main: rgba(0,255,204,0.1); /* Very subtle cyan */
+    --border-accent: rgba(128,90,213,0.1); /* Very subtle purple */
+    --text-primary: #333333; /* Very dark gray text */
+    --text-accent: #111111; /* Even darker */
+    --text-user: #222222;
+    --panel-header-color: #00ffcc;
+    --text-terminal: #002200; /* Darker green for stealth terminal */
+}
+
+/* Apply theme variables to elements */
+#ai-status-bar { border-color: var(--border-main); }
+.content-panel { border-color: var(--border-main); }
+.panel-header { border-color: var(--panel-header-color); }
+#bottom-nav { border-color: var(--border-accent); }
+#bottom-nav .nav-btn.active { border-color: var(--border-main); }
+#detail-panel { border-color: var(--border-accent); background-color: var(--bg-secondary); }
+#terminal-output { border-color: var(--border-main); }
+#terminal-input { border-color: var(--border-main); color: var(--text-terminal); } /* Use specific terminal color */
+.typing-cursor { background-color: var(--border-main); }
+.typing-cursor-terminal { background-color: var(--text-terminal); } /* Use specific terminal color */
+.user-command { color: var(--text-user); }
+.myiu-response { color: var(--text-accent); }
+::-webkit-scrollbar-thumb { background: var(--border-main); }
+::-webkit-scrollbar-thumb:hover { background: var(--border-accent); }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+
+
+/* Global styles for panel headers */
+.panel-header {
+    font-size: 1.125rem; /* text-lg */
+    font-weight: 700; /* font-bold */
+    border-bottom: 1px solid;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+/* Hidden all complex backgrounds and special effects (no images) */
+/* These elements are not present in the new HTML, but keeping their CSS for clarity */
+#hologram-grid-background,
+#light-bar-overlay,
+#data-rain-overlay,
+.panel-hologram-border::before, 
+.avatar-hologram-effect::after {
+    display: none !important; 
+}
+
+/* Text Glow Effect (Simpler, no animation for core stability) */
+.text-shadow-glow {
+    text-shadow: 0 0 3px rgba(252, 211, 77, 0.5); /* Subtle single glow */
+}
+.text-shadow-glow-cyan {
+    text-shadow: 0 0 3px rgba(0, 255, 204, 0.5);
+}
+.text-shadow-glow-green {
+    text-shadow: 0 0 3px rgba(0, 255, 204, 0.5);
+}
+
+
+/* --- Main App Container Layout (Mobile-First Default) --- */
+#app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Fills full screen */
+    width: 100vw;
+    background-color: var(--bg-secondary); /* Use theme variable */
+}
+
+/* Header, Main Content, and Footer (Nav) layout */
+#ai-status-bar {
+    flex-shrink: 0; /* Don't shrink */
+    z-index: 10; /* Above main content */
+}
+
+#main-content-area {
+    flex-grow: 1; /* Takes all available space */
+    position: relative; /* Parent for content panels */
+    overflow: hidden; /* Hide anything outside */
+}
+
+#bottom-nav {
+    flex-shrink: 0; /* Don't shrink */
+    z-index: 10; /* Above main content */
+}
+
+/* Content Panels within main-content-area */
+.content-panel {
+    position: absolute; /* Crucial: Take out of document flow */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Fill parent area */
+    box-sizing: border-box; /* Include padding/border in width/height */
+    padding: 0.5rem; /* Default padding for panels */
+
+    background-color: var(--bg-secondary); /* Use theme variable */
+    border-color: var(--border-main); /* Use theme variable */
+
+    display: none; /* Controlled by JS. Hidden by default. */
+    flex-direction: column;
+
+    opacity: 0; /* Keep opacity for JS control, but transition is 'none' */
+    transform: translateY(0px); /* Reset transform, no initial slide for mobile */
+    transition: none; /* CRITICAL: No transition by default for mobile stability */
+    pointer-events: none; /* Disable interaction when not active */
+
+    overflow-y: auto; /* Enable scrolling for content */
+}
+.content-panel.active {
+    display: flex; /* Only active one is shown */
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* Detail Panel (e.g., for system metrics) */
+#detail-panel {
+    position: fixed; /* Fixed position to overlay */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    max-height: 80%; /* Don't cover entire screen */
+    transform: translateY(100%); /* Start off-screen */
+    transition: transform 0.3s ease-out; /* Smooth slide-up/down */
+    z-index: 20; /* Above main content and nav */
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.5);
+    background-color: var(--bg-secondary); /* Match app background */
+    border-color: var(--border-accent); /* Use theme variable */
+    display: flex; /* Always flex, hidden by transform */
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 1rem;
+}
+#detail-panel.active {
+    transform: translateY(0); /* Slide up */
+}
+
+
+/* Typing cursor effect */
+.typing-cursor {
+    display: inline-block;
+    width: 3px; /* Very small for extreme mobile */
+    height: 1.1em;
+    background-color: var(--border-main); /* Use theme variable */
+    animation: blink 1s infinite;
+}
+.typing-cursor-terminal {
+    display: inline-block;
+    width: 3px;
+    height: 1.1em;
+    background-color: var(--text-terminal); /* New variable for terminal green */
+    animation: blink 1s infinite;
+}
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+
+/* AI Status Dot Pulse */
+.ai-status-dot {
+    animation: dot-pulse 1.5s infinite alternate;
+}
+@keyframes dot-pulse {
+    0% { transform: scale(1); opacity: 0.7; }
+    100% { transform: scale(1.1); opacity: 1; }
+}
+
+/* Custom Scrollbar - Smallest possible for mobile */
+::-webkit-scrollbar { width: 2px; height: 2px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); } /* Use theme variable */
+::-webkit-scrollbar-thumb {
+    background: var(--border-main); /* Use theme variable */
+    border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--border-accent); /* Use theme variable */
+}
+::-webkit-scrollbar-corner { background: transparent; }
+
+
+/* Chat specific styles */
+.user-command {
+    color: var(--text-user); /* Use theme variable */
+    font-weight: bold;
+}
+.myiu-response {
+    color: var(--text-accent); /* Use theme variable */
+}
+
+/* AI Response Indicator (pulsing dot next to input) - Simpler */
+.pulse-fade-animation {
+    animation: pulse-fade 1s infinite alternate;
+}
+@keyframes pulse-fade {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(0.9); }
+}
+
+/* Thought bubble style */
+.thought-bubble {
+    background-color: rgba(236, 72, 153, 0.05); /* Pink color fixed, can be changed later with variable if needed */
+    border-left: 2px solid rgba(236, 72, 153, 0.5);
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+}
+
+/* System Log Severity Colors */
+.log-entry {
+    background-color: rgba(0,0,0,0.1);
+    padding: 3px 5px;
+    border-radius: 3px;
+    margin-bottom: 2px;
+}
+.log-entry:hover {
+    background-color: rgba(0,255,204,0.05);
+}
+.log-info { color: #4ade80; } /* Fixed color for log levels */
+.log-warn { color: #facc15; }
+.log-error { color: #ef4444; }
+.log-label-info { background-color: rgba(74, 222, 128, 0.2); padding: 2px 4px; border-radius: 3px; font-weight: bold; }
+.log-label-warn { background-color: rgba(250, 204, 21, 0.2); padding: 2px 4px; border-radius: 3px; font-weight: bold; }
+.log-label-error { background-color: rgba(239, 68, 68, 0.2); padding: 2px 4px; border-radius: 3px; font-weight: bold; }
+
+
+/* Navigation button styles (for bottom nav) */
+#bottom-nav .nav-btn {
+    color: var(--text-primary); /* Use theme variable */
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.8rem;
+    transition: all 0.15s ease-in-out;
+    display: flex;
+    flex-direction: column; /* Stack icon and text */
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 0.5rem 0.25rem;
+    flex-grow: 1; /* Distribute space evenly */
+}
+#bottom-nav .nav-btn i {
+    font-size: 1.25rem;
+    margin-bottom: 0.15rem;
+}
+#bottom-nav .nav-btn:hover {
+    color: #ffffff;
+    background-color: var(--border-accent); /* Use theme variable */
+}
+#bottom-nav .nav-btn:active {
+    transform: scale(0.95);
+}
+#bottom-nav .nav-btn.active {
+    color: #ffffff;
+    border-bottom: 2px solid var(--border-main); /* Active indicator at bottom, use theme variable */
+    font-weight: bold;
+}
+
+
+/* Panel Glow Effects (Simpler, no complex pseudo-elements) */
+.panel-glow {
+    box-shadow: 0 0 10px rgba(252, 211, 77, 0.1);
+}
+.panel-glow-red-pulse {
+    animation: panel-red-pulse 1s infinite alternate;
+}
+@keyframes panel-red-pulse {
+    0% { box-shadow: 0 0 10px rgba(239, 68, 68, 0.2); border-color: rgba(239, 68, 68, 0.4); }
+    100% { box-shadow: 0 0 15px rgba(239, 68, 68, 0.4); border-color: rgba(239, 68, 68, 0.6); }
+}
+.panel-glow-cyan { box-shadow: 0 0 10px rgba(0, 255, 204, 0.15); }
+.panel-glow-pink { box-shadow: 0 0 10px rgba(236, 72, 153, 0.15); }
+.panel-glow-blue { box-shadow: 0 0 10px rgba(59, 130, 246, 0.15); }
+.panel-glow-purple { box-shadow: 0 0 10px rgba(128, 90, 213, 0.15); }
+
+
+/* Terminal Overlay Styles */
+#terminal-overlay {
+    background-color: rgba(0, 0, 0, 0.98);
+    transition: opacity 0.2s ease-in-out;
+}
+#terminal-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+#terminal-output {
+    background-color: var(--bg-primary); /* Use theme variable */
+    border: 1px solid var(--border-main); /* Use theme variable */
+    box-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
+}
+#terminal-input {
+    background-color: transparent;
+    border-bottom: 1px dashed var(--border-main); /* Use theme variable */
+    color: var(--text-terminal); /* Fixed green */
+}
+#close-terminal-btn {
+    cursor: pointer;
+}
+
+/* Fullscreen Terminal Mode (hides entire app container) */
+body.fullscreen-terminal #app-container { display: none !important; }
+body.fullscreen-terminal #terminal-overlay { display: flex !important; opacity: 1 !important; pointer-events: auto !important;}
+
+/* Desktop Specific Adjustments */
+@media (min-width: 1024px) {
+    #app-container {
+        flex-direction: row; /* Layout side-by-side for desktop */
+        display: grid;
+        grid-template-areas:
+            "nav ai-status-desktop status-desktop" /* Adjusted desktop grid areas */
+            "nav main status";
+        grid-template-columns: 280px 1fr 300px;
+        grid-template-rows: auto 1fr;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    #ai-status-bar {
+        grid-area: ai-status-desktop;
+        grid-column: 1 / span 3; /* Spans all 3 columns */
+        margin-bottom: 1rem;
+        border-radius: 0.5rem;
+    }
+
+    #main-content-area {
+        grid-area: main;
+        margin: 0;
+    }
+
+    #bottom-nav { /* This will become the left sidebar on desktop */
+        grid-area: nav;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        margin: 0;
+    }
+    #bottom-nav .nav-btn {
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        text-align: left;
+        padding: 0.75rem 1rem;
+    }
+    #bottom-nav .nav-btn i {
+        margin-right: 0.5rem;
+        margin-bottom: 0;
+    }
+    #bottom-nav .nav-btn.active {
+        border-bottom: none;
+        border-left: 3px solid var(--border-main); /* Use theme variable for desktop active border */
+    }
+
+    #detail-panel { /* Detail panel positioning for desktop */
+        grid-area: status;
+        position: relative;
+        width: auto;
+        height: auto;
+        max-height: none;
+        transform: translateY(0);
+        transition: none;
+        margin: 0;
+        border-radius: 0.5rem;
+        box-shadow: none;
+        display: flex !important;
+    }
+    #detail-panel.hidden {
+        display: flex !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+    }
+}
