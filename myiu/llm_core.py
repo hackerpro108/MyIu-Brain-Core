@@ -8,10 +8,10 @@ class LLMCore(AsyncModule):
     def __init__(self, app_context: AppContext):
         super().__init__(app_context)
         self.llm = None
-        config = app_context.get_service("genome_static_config").get("llm_core", {})
-        original_path = config.get("model_path")
-        self.model_path = os.path.expanduser(original_path) if original_path else None
-        self.model_params = config.get("model_params", {})
+
+        # ✅ Gán cứng đường dẫn và tham số thay vì lấy từ genome_static_config
+        self.model_path = "/root/models/phi-2/phi-2.Q4_K_M.gguf"
+        self.model_params = { "n_ctx": 2048 }
 
     async def start(self):
         await super().start()
@@ -21,7 +21,8 @@ class LLMCore(AsyncModule):
             return
         try:
             self.llm = await asyncio.to_thread(self._load_model)
-            if self.llm: self.log.info("Phi-2 model loaded successfully.")
+            if self.llm:
+                self.log.info("Phi-2 model loaded successfully.")
         except Exception as e:
             self.log.critical(f"Critical error during model loading: {e}", exc_info=True)
 
@@ -32,7 +33,8 @@ class LLMCore(AsyncModule):
         return Llama(model_path=self.model_path, **self.model_params)
 
     def generate_response(self, prompt: str, max_tokens=512, creator_override=False):
-        if not self.llm: return "LLM is not available."
+        if not self.llm:
+            return "LLM is not available."
         final_prompt = prompt
         if creator_override:
             self.log.warning("CREATOR OVERRIDE ACTIVE.")

@@ -1,0 +1,8 @@
+{
+  "llm_core": {
+    "model_path": "/root/models/phi-2/phi-2.Q4_K_M.gguf",
+    "model_params": {
+      "n_ctx": 2048
+    }
+  }
+}

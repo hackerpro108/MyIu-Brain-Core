@@ -1,9 +1,14 @@
-# Môi trường ảo
+# === Môi trường ảo Python ===
 myiu_env/
 .venv/
 env/
 
-# Log & tạm
+# === Node.js ===
+node_modules/
+dist/
+build/
+
+# === Log & file tạm ===
 *.log
 nohup.out
 *.tmp
@@ -13,7 +18,7 @@ __pycache__/
 *.py[cod]
 *.pyo
 
-# File mô hình hoặc file nặng
+# === File mô hình / nặng ===
 *.pt
 *.so
 *.gguf
@@ -22,10 +27,14 @@ __pycache__/
 *.glb
 *.vrm
 
-# DB / dữ liệu riêng
+# === Dữ liệu / DB riêng ===
 *.db
 *.sqlite3
 
-# Editor configs
+# === Cấu hình editor ===
 .vscode/
 .idea/
+
+# === Môi trường / Secrets ===
+.env
+.env.*

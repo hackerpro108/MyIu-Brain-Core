@@ -1,0 +1,9 @@
+{
+  "name": "Pháo Đài MyIu",
+  "short_name": "MyIuFortress",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#18181b",
+  "theme_color": "#18181b",
+  "description": "Mobile-first PWA Fortress UI for MyIu"
+}
