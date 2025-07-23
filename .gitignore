@@ -38,3 +38,4 @@ __pycache__/
 # === Môi trường / Secrets ===
 .env
 .env.*
+tasks/inference/completed/*.json
