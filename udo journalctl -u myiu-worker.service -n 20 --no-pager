@@ -1,0 +1,20 @@
+[0;1;32m●[0m myiu-worker.service - MyIu Inference Worker (Always On)
+     Loaded: loaded (]8;;file://skynewbie-579271.thuevpsgiare.com.vn/etc/systemd/system/myiu-worker.service/etc/systemd/system/myiu-worker.service]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)
+     Active: [0;1;32mactive (running)[0m since Wed 2025-07-23 04:06:13 UTC; 2min 46s ago
+   Main PID: 2412149 (python)
+      Tasks: 2 (limit: 4606)
+     Memory: 695.4M (peak: 695.7M)
+        CPU: 1.133s
+     CGroup: /system.slice/myiu-worker.service
+             └─[0;38;5;245m2412149 /root/myiu-brain-core/myiu_env/bin/python inference_worker.py[0m
+
+Jul 23 04:06:33 skynewbie-579271.thuevpsgiare.com.vn python[2412149]: Traceback (most recent call last):
+Jul 23 04:06:33 skynewbie-579271.thuevpsgiare.com.vn python[2412149]:   File "/root/myiu-brain-core/inference_worker.py", line 36, in process_task
+Jul 23 04:06:33 skynewbie-579271.thuevpsgiare.com.vn python[2412149]:     raise ValueError("Tác vụ không có prompt trong payload.")
+Jul 23 04:06:33 skynewbie-579271.thuevpsgiare.com.vn python[2412149]: ValueError: Tác vụ không có prompt trong payload.
+Jul 23 04:06:41 skynewbie-579271.thuevpsgiare.com.vn python[2412149]: 2025-07-23 04:06:41 - InferenceWorker - INFO - Nhận tác vụ mới: cf4ce585-d92b-43d7-af66-9319365f0d6a.json
+Jul 23 04:06:41 skynewbie-579271.thuevpsgiare.com.vn python[2412149]: 2025-07-23 04:06:41 - InferenceWorker - ERROR - Lỗi khi xử lý tác vụ cf4ce585-d92b-43d7-af66-9319365f0d6a.json: Tác vụ không có prompt trong payload.
+Jul 23 04:06:41 skynewbie-579271.thuevpsgiare.com.vn python[2412149]: Traceback (most recent call last):
+Jul 23 04:06:41 skynewbie-579271.thuevpsgiare.com.vn python[2412149]:   File "/root/myiu-brain-core/inference_worker.py", line 36, in process_task
+Jul 23 04:06:41 skynewbie-579271.thuevpsgiare.com.vn python[2412149]:     raise ValueError("Tác vụ không có prompt trong payload.")
+Jul 23 04:06:41 skynewbie-579271.thuevpsgiare.com.vn python[2412149]: ValueError: Tác vụ không có prompt trong payload.

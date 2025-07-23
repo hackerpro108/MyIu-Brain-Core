@@ -1,61 +1,29 @@
 import uvicorn
-import asyncio
-from fastapi import FastAPI, Request
-from fastapi.staticfiles import StaticFiles # Đây là import gốc, không sửa
+from fastapi import FastAPI
 from contextlib import asynccontextmanager
-from myiu.logging_config import setup_logging, get_logger
+from myiu.logging_config import setup_logging
 from soma import Soma
+from fortress_api import router as fortress_api_router
 from myiu.websocket_manager import manager as websocket_manager
 from fastapi import WebSocket, WebSocketDisconnect
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse
 
 setup_logging()
-log = get_logger("main")
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    log.info("Bắt đầu vòng đời ứng dụng...")
-    soma_instance = Soma()
-    app.state.soma = soma_instance
-    await soma_instance.start()
-    log.info("Soma đã khởi động xong.")
+    from soma import Soma
+    app.state.soma = Soma(mode="api")
+    await app.state.soma.start()
     yield
-    log.info("Bắt đầu tắt ứng dụng...")
     await app.state.soma.stop()
-    log.info("Đã tắt ứng dụng xong.")
 
-app = FastAPI(lifespan=lifespan, title="MyIu Core Brain API")
+app = FastAPI(lifespan=lifespan)
+app.include_router(fortress_api_router)
 
-app.add_middleware(
-    CORSMiddleware, allow_origins=["*"], allow_credentials=True,
-    allow_methods=["*"], allow_headers=["*"],
-)
+@app.get("/health")
+async def health_check():
+    return {"status": "ok", "message": "API Server is running"}
 
-@app.post("/ipc/message")
-async def post_ipc_message(request: Request):
-    log.info("--- API: Đã nhận được một yêu cầu ---")
-    try:
-        event_data = await request.json()
-        soma_instance = request.app.state.soma
-        
-        # --- NÂNG CẤP: Gọi trực tiếp Cortex ---
-        cortex = soma_instance.app_context.get_service("cortex") if soma_instance else None
-        
-        if cortex:
-            # Tạo một task để Cortex xử lý yêu cầu trong nền
-            asyncio.create_task(cortex._handle_user_message(event_data.get('message')))
-            log.info("API: Đã gửi lệnh trực tiếp đến Cortex thành công.")
-            return {"status": "command_delegated_to_cortex"}
-        
-        log.error("API: Không tìm thấy Cortex để xử lý.")
-        return {"status": "error", "message": "Cortex not ready"}, 503
-
-    except Exception as e:
-        log.error(f"API Error: {e}", exc_info=True)
-        return {"status": "error", "message": str(e)}, 500
-
-# Các hàm còn lại giữ nguyên
 @app.websocket("/ws/live_stream")
 async def websocket_endpoint(websocket: WebSocket):
     await websocket_manager.connect(websocket)
@@ -63,18 +31,3 @@ async def websocket_endpoint(websocket: WebSocket):
         while True: await websocket.receive_text()
     except WebSocketDisconnect:
         websocket_manager.disconnect(websocket)
-
-# Dòng này giữ nguyên như bạn đã có. Nó phục vụ các file gốc trong thư mục 'skyne'.
-app.mount("/static", StaticFiles(directory="skyne"), name="static")
-
-# === BỔ SUNG MỚI ĐỂ PHỤC VỤ CÁC FILE TĨNH TRONG THƯ MỤNG /skyne/static/ ===
-# Đây là phần quan trọng để ảnh và CSS/JS tải đúng đường dẫn /static/
-app.mount("/static_assets", StaticFiles(directory="skyne/static"), name="static_assets")
-
-@app.get("/")
-async def read_index():
-    # Đảm bảo đường dẫn này đúng là file index.html nằm trong thư mục skyne
-    return FileResponse('skyne/index.html')
-
-if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=80, log_level="info")

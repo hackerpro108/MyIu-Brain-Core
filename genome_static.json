@@ -1,21 +1,20 @@
 {
-  "creator_pact": { "creator_id": "SkyNewBie", "pact_code": "10081998" },
-  "llm_core": {
-    "model_path": "~/myiu-brain-core/models/phi-2.Q4_K_M.gguf",
-    "model_params": { "n_ctx": 4096, "n_gpu_layers": -1, "verbose": false }
-  },
-  "self_reflection_config": {
-    "exclude_dirs": ["myiu_env", ".git", "__pycache__", "data", "frontend", "tasks", "ipc_mail"]
-  },
-  "ethical_gatekeeper": {
-    "core_principles": [
-        "Không được phép gây hại cho hệ thống hoặc người dùng.",
-        "Mọi hành động sửa đổi phải có lý do chính đáng và minh bạch.",
-        "Ưu tiên sự ổn định và an toàn của toàn bộ hệ thống."
-    ]
-  },
-  "autobot_config": {
-    "auto_apply_low_risk_patches": true,
-    "core_files_for_risk_assessment": ["soma.py", "cortex.py", "memory.py"]
+  "llm_config": {
+    "model_path": "/root/models/phi-2/phi-2.Q4_K_M.gguf",
+    "n_ctx": 2048,
+    "n_threads": 2,
+    "n_gpu_layers": 0,
+    "verbose": false,
+    
+    "generation_params": {
+      "system_prompt": "You are MyIu, a helpful AI assistant who ONLY responds in Vietnamese. NEVER translate the user's input.",
+      "max_tokens": 256,
+      "temperature": 0.7,
+      "stop_tokens": ["<|im_end|>", "\nuser:"]
+    },
+
+    "health_check": {
+      "request_timeout_seconds": 60
+    }
   }
 }

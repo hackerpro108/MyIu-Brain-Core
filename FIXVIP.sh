@@ -1,3 +1,85 @@
+#!/bin/bash
+# === KỊCH BẢN MYIU ORACLE v1.1 (Phiên bản vá lỗi) ===
+# Nâng cấp Hệ thống với Khả năng Tự chẩn đoán và Báo cáo Tích hợp
+set -e
+
+echo "--- BẮT ĐẦU NÂNG CẤP LÊN KIẾN TRÚC TỰ CHẨN ĐOÁN (v1.1) ---"
+
+# --- GIAI ĐOẠN 1: DẠY "NGƯỜI THỢ" CÁCH VIẾT BÁO CÁO ---
+echo "▶️ [1/2] Đang nâng cấp 'Người Thợ Suy luận' (inference_worker.py)..."
+cat > /root/myiu-brain-core/inference_worker.py << 'EOF'
+# Tên file: inference_worker.py (Phiên bản Báo cáo)
+import time, json, os, traceback
+from pathlib import Path
+from myiu.llm_core import LLMCore
+from myiu.app_context import AppContext
+from myiu.logging_config import setup_logging, get_logger
+
+setup_logging()
+log = get_logger("InferenceWorker")
+app_context = AppContext()
+with open("genome_static.json", "r") as f:
+    app_context.set_service("genome_static_config", json.load(f))
+
+PENDING_DIR, COMPLETED_DIR = Path("tasks/inference/pending"), Path("tasks/inference/completed")
+
+def process_task(task_path: Path, llm_core: LLMCore):
+    task_id = task_path.stem
+    result_path = COMPLETED_DIR / task_path.name
+    response_payload = {}
+    
+    try:
+        log.info(f"Worker: Nhận tác vụ mới: {task_id}")
+        with open(task_path, 'r') as f:
+            task_data = json.load(f)
+
+        prompt = task_data.get("prompt")
+        if not prompt or not prompt.strip():
+            raise ValueError("Nhiệm vụ nhận được không có nội dung (prompt rỗng).")
+        
+        response_text = llm_core.generate_response(prompt)
+        response_payload = {"status": "success", "response": response_text}
+        log.info(f"Worker: Hoàn thành tác vụ: {task_id}")
+
+    except Exception as e:
+        log.error(f"Worker: Lỗi nghiêm trọng khi xử lý tác vụ {task_id}: {e}", exc_info=True)
+        error_report = traceback.format_exc()
+        response_payload = {
+            "status": "failed",
+            "response": f"Xin lỗi sếp, tôi đã gặp một lỗi nghiêm trọng khi đang suy nghĩ.",
+            "error_details": error_report
+        }
+    finally:
+        with open(result_path, 'w') as f:
+            json.dump(response_payload, f, ensure_ascii=False)
+        os.remove(task_path)
+
+def main_loop():
+    llm_core = LLMCore(app_context)
+    if not llm_core.llm:
+        log.critical("Worker: Không thể tải model. Worker sẽ không khởi động.")
+        return
+    log.info("✅ Worker (Oracle) đã sẵn sàng.")
+    while True:
+        try:
+            tasks = list(PENDING_DIR.glob("*.json"))
+            if tasks:
+                for task in tasks:
+                    process_task(task, llm_core)
+            time.sleep(1)
+        except KeyboardInterrupt:
+            break
+        except Exception as e:
+            log.error(f"Worker: Lỗi nghiêm trọng trong vòng lặp chính: {e}", exc_info=True)
+            time.sleep(5)
+
+if __name__ == "__main__":
+    main_loop()
+EOF
+
+# --- GIAI ĐOẠN 2: DẠY "QUẢN ĐỐC" CÁCH ĐỌC BÁO CÁO (ĐÃ SỬA LỖI) ---
+echo "▶️ [2/2] Đang nâng cấp 'Vỏ não' (cortex.py)..."
+cat > /root/myiu-brain-core/myiu/cortex.py << 'EOF'
 # Tên file: myiu/cortex.py (Phiên bản Báo cáo - Đã sửa lỗi)
 import asyncio, json, uuid, os, time, traceback
 from datetime import datetime
@@ -82,3 +164,10 @@ class Cortex(AsyncModule):
 
     async def stop(self):
         await super().stop()
+EOF
+
+echo "✅ Đã nâng cấp thành công."
+echo "▶️ Đang khởi động lại hệ thống..."
+sudo systemctl restart myiu-api.service
+sudo systemctl restart myiu-worker.service
+echo "--- HOÀN TẤT KỊCH BẢN ORACLE v1.1 ---"
